@@ -1,17 +1,15 @@
 import OpenAI from 'openai';
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-// Initialize the OpenAI client to point to OpenRouter
 const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
-  apiKey: process.env.OPENROUTER_API_KEY || '', // Use the new environment variable
+  apiKey: process.env.OPENROUTER_API_KEY || '', 
   defaultHeaders: {
-    "HTTP-Referer": "http://localhost:3000", // Will be your Vercel URL in production
+    "HTTP-Referer": "http://localhost:3000", 
     "X-Title": "Swipe Interview Assistant",
   },
 });
 
-// A powerful, free model available on OpenRouter
 const MODEL_NAME = "mistralai/mistral-7b-instruct:free";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -54,7 +52,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         { role: "system", content: systemPrompt },
         { role: "user", content: userPrompt },
       ],
-      // Add response_format for the evaluation case to ensure JSON output
       response_format: type === 'evaluate-answer' ? { type: 'json_object' } : undefined,
     });
 
@@ -65,7 +62,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     if (type === 'evaluate-answer') {
-        // The response should already be a valid JSON string because of response_format
         return res.status(200).json(JSON.parse(aiResponse));
     }
 
@@ -75,4 +71,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     console.error("Error communicating with OpenRouter:", error.message);
     return res.status(500).json({ error: 'Failed to communicate with the AI model.' });
   }
+
 }
