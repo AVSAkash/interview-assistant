@@ -36,7 +36,6 @@ const IntervieweeView = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [showWelcomeBack, setShowWelcomeBack] = useState(false);
 
-  // This calculates the expiry time whenever the question changes.
   const expiryTimestamp = useMemo(() => {
     if (status === 'in-progress' && questions.length > 0) {
       const duration = getTimerDuration(currentQuestionIndex);
@@ -47,11 +46,10 @@ const IntervieweeView = () => {
 
 
   useEffect(() => {
-    // This effect now only handles the "Welcome Back" modal logic
     if (status === 'in-progress') {
       setShowWelcomeBack(true);
     }
-  }, []); // Runs only once on mount
+  }, []);
 
   const handleUploadSuccess = (details: CandidateDetails) => {
     setLocalDetails(details);
@@ -132,12 +130,11 @@ const IntervieweeView = () => {
           title={`Question ${currentQuestionIndex + 1} of 6 (${getDifficulty(currentQuestionIndex)})`}
           extra={
             <Statistic.Countdown 
-              key={currentQuestionIndex} // Add key to force re-render on question change
+              key={currentQuestionIndex} 
               title="Time Remaining" 
               value={expiryTimestamp} 
               format="mm:ss" 
               onFinish={() => {
-                // CORRECTED: Use message.warning
                 message.warning('Time is up! Submitting your answer.');
                 handleAnswerSubmit();
               }}
@@ -196,5 +193,6 @@ const IntervieweeView = () => {
     </div>
   );
 };
+
 
 export default IntervieweeView;
