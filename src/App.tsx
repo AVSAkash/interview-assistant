@@ -38,13 +38,13 @@ const App = () => {
           style={{ flex: 1, minWidth: 0 }}
         />
       </Header>
-      {/* UPDATED: Use Flexbox to center the content */}
+      {}
       <Content 
         style={{ 
           padding: '24px',
           display: 'flex',
           flexDirection: 'column',
-          alignItems: 'center', // This is the key change to center the child div
+          alignItems: 'center', 
         }}
       >
         <div
@@ -52,7 +52,6 @@ const App = () => {
             background: colorBgContainer,
             padding: 24,
             borderRadius: borderRadiusLG,
-            // We still need these to control the content's size
             maxWidth: '1200px',
             width: '100%',
           }}
