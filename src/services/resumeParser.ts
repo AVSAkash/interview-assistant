@@ -1,10 +1,8 @@
 import * as pdfjsLib from 'pdfjs-dist';
 import mammoth from 'mammoth';
 
-// This is required for pdfjs to work in a web environment
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
-// Function to extract text from a file (PDF or DOCX)
 const getTextFromFile = async (file: File): Promise<string> => {
   if (file.type === 'application/pdf') {
     const reader = new FileReader();
@@ -45,11 +43,9 @@ const getTextFromFile = async (file: File): Promise<string> => {
   }
 };
 
-// Regex patterns to find details
 const emailRegex = /\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i;
 const phoneRegex = /(?:\+?\d{1,3}[-.\s]?)?\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/;
 
-// A simple approach to find a name (often at the start of the resume)
 const nameRegex = /^([A-Z][a-z]+(?:\s[A-Z][a-z]+)*)/;
 
 export interface CandidateDetails {
@@ -58,7 +54,6 @@ export interface CandidateDetails {
   phone: string | null;
 }
 
-// Main function to parse the resume and extract details
 export const parseResume = async (file: File): Promise<CandidateDetails> => {
   try {
     const text = await getTextFromFile(file);
@@ -76,4 +71,5 @@ export const parseResume = async (file: File): Promise<CandidateDetails> => {
     console.error(error);
     throw new Error(error as string);
   }
+
 };
