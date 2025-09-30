@@ -12,12 +12,6 @@ This is a React application built for the Swipe Internship Assignment. It functi
 
 ---
 
-### **Screenshot**
-
-
-*A view of the Interviewer Dashboard, showing a list of candidates sorted by their final scores.*
-
----
 
 ### **Core Features**
 
