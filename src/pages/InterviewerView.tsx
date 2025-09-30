@@ -18,7 +18,6 @@ interface Candidate {
 const InterviewerView = () => {
   const candidates = useSelector((state: RootState) => state.candidates.candidates);
 
-  // This function renders the expandable section for each candidate
   const expandedRowRender = (record: Candidate) => {
     return (
       <Descriptions title="Interview Details" bordered column={1} size="small">
@@ -88,5 +87,6 @@ const InterviewerView = () => {
     </div>
   );
 };
+
 
 export default InterviewerView;
