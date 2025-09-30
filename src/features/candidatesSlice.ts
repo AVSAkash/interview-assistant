@@ -23,10 +23,11 @@ const candidatesSlice = createSlice({
   initialState,
   reducers: {
     addCandidate: (state, action: PayloadAction<Candidate>) => {
-      state.candidates.unshift(action.payload); // Add to the beginning of the list
+      state.candidates.unshift(action.payload); 
     },
   },
 });
 
 export const { addCandidate } = candidatesSlice.actions;
+
 export default candidatesSlice.reducer;
