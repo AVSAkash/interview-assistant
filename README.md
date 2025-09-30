@@ -80,5 +80,3 @@ This application is deployed on **Vercel**.
 
 To deploy your own version, run the command `vercel --prod`. After deployment, you must add the `OPENROUTER_API_KEY` as an environment variable in your Vercel project settings to allow the AI functionality to work.
 
-```
-```
