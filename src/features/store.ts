@@ -1,13 +1,13 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
+import storage from 'redux-persist/lib/storage'; 
 import interviewReducer from './interviewSlice';
 import candidatesReducer from './candidatesSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['interview', 'candidates'], // We want to persist both slices
+  whitelist: ['interview', 'candidates'],
 };
 
 const rootReducer = combineReducers({
@@ -22,7 +22,6 @@ export const store = configureStore({
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
-        // Ignore these action types from redux-persist
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
       },
     }),
@@ -32,4 +31,5 @@ export const persistor = persistStore(store);
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
 export type RootState = ReturnType<typeof store.getState>;
+
 export type AppDispatch = typeof store.dispatch;
