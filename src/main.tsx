@@ -4,14 +4,13 @@ import Root from './App.tsx';
 import './index.css';
 import 'antd/dist/reset.css';
 
-// Add these imports
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from './features/store.ts';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    {/* Wrap your app with the Provider and PersistGate */}
+    {}
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <Root />
